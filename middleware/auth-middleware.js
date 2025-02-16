@@ -22,7 +22,6 @@ export const authenticateUser = async (req, res, next) => {
 
 export const authorizeRole = (roles) => (req, res, next) => {
   if (!req.user) return res.status(401).json({ message: 'Access Denied' });
-  console.log(req.user, 'In middleware');
   if (!roles.includes(req.user.role)) {
     return res.status(403).json({ message: 'You dont have permission' });
   }

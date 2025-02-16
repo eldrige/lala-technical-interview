@@ -4,13 +4,9 @@ import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
 import AppError from './utils/appError.js';
-// import globalErrHandler from './controllers/errorController.js';
-// const cors = require('cors');
-// const express = require('express');
-// const globalErrHandler = require('./controllers/errorController');
 import userRouter from './router/user-routes.js';
 import propertyRouter from './router/property-routes.js';
-// const AppError = require('./utils/appError');
+import bookingRouter from './router/booking-routes.js';
 
 const app = express();
 
@@ -20,6 +16,7 @@ app.use(morgan('dev'));
 
 app.use('/users', userRouter);
 app.use('/properties', propertyRouter);
+app.use('/bookings', bookingRouter);
 
 // app.use('/properties/', uploadRouter);
 // app.use('/bookings/', articleRouter);

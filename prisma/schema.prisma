@@ -61,6 +61,7 @@ enum Role {
 }
 
 enum BookingStatus {
+  IDLE
   PENDING
   CONFIRMED
   CANCELED
