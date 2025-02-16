@@ -9,6 +9,7 @@ import AppError from './utils/appError.js';
 // const express = require('express');
 // const globalErrHandler = require('./controllers/errorController');
 import userRouter from './router/user-routes.js';
+import propertyRouter from './router/property-routes.js';
 // const AppError = require('./utils/appError');
 
 const app = express();
@@ -18,6 +19,8 @@ app.use(express.json({}));
 app.use(morgan('dev'));
 
 app.use('/users', userRouter);
+app.use('/properties', propertyRouter);
+
 // app.use('/properties/', uploadRouter);
 // app.use('/bookings/', articleRouter);
 app.get('/', (req, res) => res.send('Welcome to lala API'));
