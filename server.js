@@ -6,7 +6,9 @@ process.on('uncaughtException', (err) => {
   process.exit(1);
 });
 
-const app = require('./app');
+import app from './app.js';
+
+// const app = require('./app');
 // const connectDB = require('./config/db');
 
 // connectDB();

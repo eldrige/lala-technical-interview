@@ -8,17 +8,21 @@
     "dev": "NODE_ENV=development nodemon server.js",
     "prod": "NODE_ENV=production nodemon server.js"
   },
+  "type": "module",
   "keywords": [],
-  "author": "",
+  "author": "Eldrige",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "6.3.1",
     "bcryptjs": "^3.0.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
   },
   "devDependencies": {
     "prisma": "^6.3.1"
