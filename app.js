@@ -8,7 +8,7 @@ import AppError from './utils/appError.js';
 // const cors = require('cors');
 // const express = require('express');
 // const globalErrHandler = require('./controllers/errorController');
-import userRouter from './router/user-route.js';
+import userRouter from './router/user-routes.js';
 // const AppError = require('./utils/appError');
 
 const app = express();
@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json({}));
 app.use(morgan('dev'));
 
-app.use('/users/', userRouter);
+app.use('/users', userRouter);
 // app.use('/properties/', uploadRouter);
 // app.use('/bookings/', articleRouter);
 app.get('/', (req, res) => res.send('Welcome to lala API'));
