@@ -33,3 +33,33 @@ export const updateBookingStatus = catchAsync(async (req, res) => {
   });
   res.json(booking);
 });
+
+export const getMyBookingsAsHost = catchAsync(async (req, res) => {
+  const hostId = req.user.id;
+  const bookings = await prisma.booking.findMany({
+    where: {
+      property: {
+        hostId: hostId,
+      },
+    },
+    include: {
+      renter: true,
+      property: true,
+    },
+  });
+  res.json(bookings);
+});
+
+export const getMyBookingsAsRenter = catchAsync(async (req, res) => {
+  const renterId = req.user.id;
+  const bookings = await prisma.booking.findMany({
+    where: {
+      renterId: renterId,
+    },
+    include: {
+      renter: true,
+      property: true,
+    },
+  });
+  res.json(bookings);
+});

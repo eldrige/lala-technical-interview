@@ -53,7 +53,7 @@ export const authenticateUser = catchAsync(async (req, res, next) => {
         name: data.names[0].displayName,
         email: data.emailAddresses[0].value,
         avatar: data.photos[0].value,
-        role: 'HOST',
+        role: 'RENTER',
       },
     });
 

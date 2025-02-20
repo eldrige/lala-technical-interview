@@ -20,6 +20,13 @@ export const getProperties = catchAsync(async (_, res) => {
   res.json(properties);
 });
 
+export const getMyProperties = catchAsync(async (req, res) => {
+  const properties = await prisma.property.findMany({
+    where: { hostId: req.user.id },
+  });
+  res.json(properties);
+});
+
 export const updateProperty = catchAsync(async (req, res) => {
   const { id } = req.params;
   const property = await prisma.property.update({
