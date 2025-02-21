@@ -30,7 +30,7 @@ export const getMe = catchAsync(async (req, res) => {
 });
 
 export const authenticateUser = catchAsync(async (req, res, next) => {
-  const { access_token } = req.body;
+  const { access_token, role } = req.body;
   const auth = initGoogle();
 
   if (!access_token) {
@@ -48,6 +48,8 @@ export const authenticateUser = catchAsync(async (req, res, next) => {
     personFields: 'emailAddresses,names,photos',
   });
 
+  console.log(data, 'From google route');
+
   const profileId = data.resourceName.split('/')[1];
 
   const user = await prisma.user.findUnique({
@@ -64,8 +66,8 @@ export const authenticateUser = catchAsync(async (req, res, next) => {
         googleId: profileId,
         name: data.names[0].displayName,
         email: data.emailAddresses[0].value,
-        avatar: data.photos[0].value,
-        role: 'RENTER',
+        avatar: data.photos[0].url,
+        role: role ?? 'RENTER',
       },
     });
 

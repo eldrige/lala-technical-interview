@@ -21,6 +21,10 @@ export const getProperties = catchAsync(async (_, res) => {
 });
 
 export const getMyProperties = catchAsync(async (req, res) => {
+  // console.log(req.user, 'Here motherfucker');
+  // console.log('Here motherfucker');
+  // res.send('ok');
+
   const properties = await prisma.property.findMany({
     where: { hostId: req.user.id },
   });
@@ -32,6 +36,15 @@ export const updateProperty = catchAsync(async (req, res) => {
   const property = await prisma.property.update({
     where: { id },
     data: req.body,
+  });
+  res.json(property);
+});
+
+export const getProperty = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const property = await prisma.property.findUnique({
+    where: { id },
+    include: { host: true },
   });
   res.json(property);
 });
