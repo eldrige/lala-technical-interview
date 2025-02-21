@@ -13,9 +13,21 @@ const initGoogle = () =>
   });
 
 export const logout = (req, res) => {
-  req.logout();
   res.json({ message: 'Logged out successfully' });
 };
+
+export const getMe = catchAsync(async (req, res) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      id: req.user.id,
+    },
+  });
+
+  res.json({
+    status: 200,
+    user,
+  });
+});
 
 export const authenticateUser = catchAsync(async (req, res, next) => {
   const { access_token } = req.body;

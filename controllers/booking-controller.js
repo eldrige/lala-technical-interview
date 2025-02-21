@@ -59,6 +59,11 @@ export const getMyBookingsAsRenter = catchAsync(async (req, res) => {
     include: {
       renter: true,
       property: true,
+      property: {
+        include: {
+          host: true,
+        },
+      },
     },
   });
   res.json(bookings);
